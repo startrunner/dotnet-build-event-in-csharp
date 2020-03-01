@@ -8,7 +8,7 @@ namespace TheBuild
     {
         private BuildEventParameters() { }
 
-        public BuildEventType Type { get; set; }
+        public BuildEventType Type { get; private set; }
         public string SolutionDirectoryPath { get; private set; }
         public string TargetPath { get; private set; }
         public string TargetDirectoryPath { get; private set; }
@@ -77,7 +77,6 @@ namespace TheBuild
             }
 
             string commandLine = builder.ToString().Trim();
-            //return commandLine;
             return commandLine;
         }
 
