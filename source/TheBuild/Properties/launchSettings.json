@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TheBuild": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Key": "Value"
+      },
+      "sqlDebugging": false,
+      "nativeDebugging": false
+    }
+  }
+}

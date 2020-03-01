@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>false</SignAssembly>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <Configurations>Debug;Release;Run</Configurations>
+    <ApplicationIcon />
+    <StartupObject />
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Run|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet run -c Run --project &quot;$(ProjectDir.Replace('\', '/').TrimEnd('/'))/../TheBuild/TheBuild.csproj&quot; ---BuildEventType PostBuild ---SolutionDir &quot;$(SolutionDir.TrimEnd('\'))&quot; ---TargetPath &quot;$(TargetPath.TrimEnd('\'))&quot; ---ProjectPath &quot;$(ProjectPath.TrimEnd('\'))&quot; ---DevEnvDir &quot;$(DevEnvDir.TrimEnd('\'))&quot; ---TargetDir &quot;$(TargetDir.TrimEnd('\'))&quot; ---ProjectDir &quot;$(ProjectDir.TrimEnd('\'))&quot; ---SolutionPath &quot;$(SolutionPath.TrimEnd('\'))&quot; ---OutDir &quot;$(OutDir.TrimEnd('\'))&quot; ---ConfigurationName &quot;$(ConfigurationName)&quot; ---ProjectName &quot;$(ProjectName)&quot; ---TargetName &quot;$(TargetName)&quot; ---ProjectFileName &quot;$(ProjectFileName)&quot; ---TargetExt &quot;$(TargetExt)&quot; ---TargetFileName &quot;$(TargetFileName)&quot; ---SolutionFileName &quot;$(SolutionFileName)&quot; ---SolutionName &quot;$(SolutionName)&quot; ---PlatformName &quot;$(PlatformName)&quot; ---ProjectExt &quot;$(ProjectExt)&quot; ---SolutionExt &quot;$(SolutionExt)&quot;&#xD;&#xA;" />
+  </Target>
+
+</Project>
