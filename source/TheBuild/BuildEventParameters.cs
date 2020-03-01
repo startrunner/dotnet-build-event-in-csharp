@@ -58,7 +58,7 @@ namespace TheBuild
         {
             var builder = new StringBuilder();
 
-            //We will use forward slashes for the path here because in order support build on Linix (Then still work on Windows in this case)
+            //We will use forward slashes for the path here in order support build on Linix (They still work on Windows in this case)
             builder.Append($@"dotnet run -c Run --project ""$(ProjectDir.Replace('\', '/').TrimEnd('/'))/../{ProjectPathRelativeToSolution.Replace('\\', '/').TrimStart('/')}""");
 
             builder.Append($" ---BuildEventType {type}");
