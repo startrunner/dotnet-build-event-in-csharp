@@ -30,30 +30,6 @@ namespace TheBuild
         public string ProjectExtension { get; private set; }
         public string SolutionExtension { get; private set; }
 
-        public static readonly (string Parameter, Action<BuildEventParameters, string> Setter)[] ParameterDefinitions =
-             new (string, Action<BuildEventParameters, string>)[] {
-                ("SolutionDir", (x, s) => x.SolutionDirectoryPath = s),
-                ("TargetPath", (x, s) => x.TargetPath = s),
-                ("ProjectPath", (x, s) => x.ProjectPath = s),
-                ("DevEnvDir", (x, s) => x.VisualStudioDirectoryPath = s),
-                ("TargetDir", (x, s) => x.TargetDirectoryPath = s),
-                ("ProjectDir", (x, s) => x.ProjectDirectoryPath = s),
-                ("SolutionPath", (x, s) => x.SolutionPath=s),
-                ("OutDir", (x, s) => x.OutDirectoryRelativePath = s),
-                ("ConfigurationName", (x, s) => x.ConfigurationName=s),
-                ("ProjectName", (x, s) => x.ProjectName=s),
-                ("TargetName", (x, s) => x.TargetName=s),
-                ("ProjectFileName", (x, s) => x.ProjectFileName=s),
-                ("TargetExt", (x, s) => x.TargetExtension=s),
-                ("TargetFileName", (x, s) => x.TargetFileName=s),
-                ("SolutionFileName", (x, s) => x.SolutionFileName=s),
-                ("SolutionName", (x, s) => x.SolutionName=s),
-                ("PlatformName", (x, s) => x.PlatformName=s),
-                ("ProjectExt", (x, s) => x.ProjectExtension=s),
-                ("SolutionExt", (x, s) => x.SolutionExtension=s),
-                ("BuildEventType", (x, s)=>x.Type = Enum.Parse<BuildEventType>(s)),
-             };
-
         public static string BuildExampleCommandLine(BuildEventType type)
         {
             var builder = new StringBuilder();
@@ -79,6 +55,30 @@ namespace TheBuild
             string commandLine = builder.ToString().Trim();
             return commandLine;
         }
+
+        private static readonly (string Parameter, Action<BuildEventParameters, string> Setter)[] ParameterDefinitions =
+             new (string, Action<BuildEventParameters, string>)[] {
+                ("SolutionDir", (x, s) => x.SolutionDirectoryPath = s),
+                ("TargetPath", (x, s) => x.TargetPath = s),
+                ("ProjectPath", (x, s) => x.ProjectPath = s),
+                ("DevEnvDir", (x, s) => x.VisualStudioDirectoryPath = s),
+                ("TargetDir", (x, s) => x.TargetDirectoryPath = s),
+                ("ProjectDir", (x, s) => x.ProjectDirectoryPath = s),
+                ("SolutionPath", (x, s) => x.SolutionPath=s),
+                ("OutDir", (x, s) => x.OutDirectoryRelativePath = s),
+                ("ConfigurationName", (x, s) => x.ConfigurationName=s),
+                ("ProjectName", (x, s) => x.ProjectName=s),
+                ("TargetName", (x, s) => x.TargetName=s),
+                ("ProjectFileName", (x, s) => x.ProjectFileName=s),
+                ("TargetExt", (x, s) => x.TargetExtension=s),
+                ("TargetFileName", (x, s) => x.TargetFileName=s),
+                ("SolutionFileName", (x, s) => x.SolutionFileName=s),
+                ("SolutionName", (x, s) => x.SolutionName=s),
+                ("PlatformName", (x, s) => x.PlatformName=s),
+                ("ProjectExt", (x, s) => x.ProjectExtension=s),
+                ("SolutionExt", (x, s) => x.SolutionExtension=s),
+                ("BuildEventType", (x, s)=>x.Type = Enum.Parse<BuildEventType>(s)),
+             };
 
         static string ProjectPathRelativeToSolution => _projectPathRelativeToSolution?.Value;
         static readonly Lazy<string> _projectPathRelativeToSolution = new Lazy<string>(GetProjectPathRelativeToSolution);
